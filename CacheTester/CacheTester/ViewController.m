@@ -34,7 +34,7 @@
     logText = [[NSMutableString alloc] init];
     logView.text = logText;
 	[super viewDidLoad];
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://pionerskaya.ru/wp/articles/index-manifest.html"]]];
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://pionerskaya.ru/wp/CleanHTML/index-manifest.html"]]];
 }
 
 - (void)viewDidUnload

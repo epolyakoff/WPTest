@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html manifest="prototype.appcache" xmlns="http://www.w3.org/1999/xhtml">
+
+<body>
+		<ul id="all_articles">
+			<li><a href="article-1.html" class="fetch">Article 1</a></li>
+			<li><a href="article-2.html" class="fetch">Article 2</a></li>
+			<li><a href="article-3.html" class="fetch">Article 3</a></li>
+			
+			<li><a href="article-4.html" class="fetch">Article 4</a></li>
+			
+			<li><a href="article-5.html" class="fetch">Article 5</a></li>
+			<li><a href="article-6.html" class="fetch">Article 6</a></li>
+			<li><a href="article-7.html" class="fetch">Article 7</a></li>
+			
+			<li><a href="article-8.html" class="fetch">Article 8</a></li>
+			<li><a href="article-9.html" class="fetch">Article 9</a></li>
+			<li><a href="article-10.html" class="fetch">Article 10</a></li>
+			<li><a href="article-11.html" class="fetch">Article 11</a></li>
+			<li><a href="article-12.html" class="fetch">Article 12</a></li>
+			<li><a href="article-13.html" class="fetch">Article 13</a></li>
+			<li><a href="article-14.html" class="fetch">Article 14</a></li>
+			<li><a href="article-15.html" class="fetch">Article 15</a></li>
+			<li><a href="article-16.html" class="fetch">Article 16</a></li>
+			<li><a href="article-17.html" class="fetch">Article 17</a></li>
+			<li><a href="article-18.html" class="fetch">Article 18</a></li>
+			<li><a href="article-19.html" class="fetch">Article 19</a></li>
+			<li><a href="article-20.html" class="fetch">Article 20</a></li>
+	
+		</ul>
+
+<script type="text/javascript">
+
+	var webappCache = window.applicationCache;
+
+	function mlog(str) {
+		var isiPad = navigator.userAgent.match(/iPad/i) != null;
+		if (!isiPad) {
+			console.log(str);
+		} else {
+			  document.location.assign('log://'+str);
+		}
+	}
+	
+	function loaded()
+	{
+
+		switch(webappCache.status)
+		{
+			case 0:
+				mlog("Cache status: Uncached");
+				break;
+			case 1:
+				mlog("Cache status: Idle");
+				break;
+			case 2:
+				mlog("Cache status: Checking");
+				break;
+			case 3:
+				mlog("Cache status: Downloading");
+				break;
+			case 4:
+				mlog("Cache status: Updateready");
+				break;
+			case 5:
+				mlog("Cache status: Obsolete");
+				break;
+		}
+	}
+	function updateCache()
+	{
+		webappCache.swapCache();
+		mlog("Cache has been updated due to a change found in the manifest");
+	}
+	function errorCache()
+	{
+		mlog("You're either offline or something has gone horribly wrong.");
+	}
+
+	window.addEventListener("load", loaded, false);
+	webappCache.addEventListener("updateready", updateCache, false);
+	webappCache.addEventListener("error", errorCache, false);
+
+
+</script>
+
+</body>
+</html>
